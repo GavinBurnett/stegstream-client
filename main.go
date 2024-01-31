@@ -1,0 +1,118 @@
+// stegstream-client project main.go
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+// Main: program entry point
+func main() {
+
+	var hiddenFileExtracted bool = false
+	var hiddenFileName string
+
+	exitCode := 0
+
+	// Hardcode command line arguments for testing
+	// testArgs := []string{"", ""}
+	// testArgs[0] = "./stegstream-client"
+	// testArgs[1] = "http://localhost:8080/Audio"
+	// os.Args = testArgs
+
+	if os.Args != nil {
+
+		if DEBUG == true {
+			fmt.Println(len(os.Args), UI_Arguments, os.Args)
+		}
+
+		if len(os.Args) == 1 {
+			// No user arguments given - display help
+			fmt.Println(UI_Help)
+		}
+		if len(os.Args) == 2 {
+			if IsStringHelpArgument(os.Args[1]) {
+				// User has given help argument - display help
+				fmt.Println(UI_Help)
+			} else {
+				// User has given server URL as argument
+
+				// Get container file from server URL
+				if GetServerFile(os.Args[1]) == true {
+					// Extract hidden file from container file
+					fmt.Println(UI_ExtractingHiddenFile)
+					hiddenFileExtracted, hiddenFileName = Unsteg(TEMP_FILE)
+					if hiddenFileExtracted == true {
+						// Delete container file
+						if DeleteFile(TEMP_FILE) == false {
+							fmt.Println(UI_ExtractedHiddenFile, hiddenFileName)
+						} else {
+							exitCode = 1
+							fmt.Println(UI_DeleteError, TEMP_FILE)
+						}
+					} else {
+						exitCode = 1
+						fmt.Println(UI_FailedToExtractHiddenFile)
+					}
+				} else {
+					exitCode = 1
+					fmt.Println(UI_FailedToDownloadContainerFile)
+				}
+			}
+		}
+		if len(os.Args) > 2 {
+			// Too many arguments - display error
+			exitCode = 1
+			fmt.Println(UI_InvalidArgs)
+		}
+
+	} else {
+		// No arguments
+		exitCode = 1
+		fmt.Println(UI_NoParametersGiven)
+	}
+
+	os.Exit(exitCode)
+}
+
+// IsStringHelpArgument: Returns true if given string is a help argument, false if it is not
+func IsStringHelpArgument(_theString string) bool {
+
+	isHelpArgument := false
+
+	if len(_theString) > 0 {
+
+		switch _theString {
+		case "?":
+			isHelpArgument = true
+		case "/?":
+			isHelpArgument = true
+		case "-?":
+			isHelpArgument = true
+		case "--?":
+			isHelpArgument = true
+		case "h":
+			isHelpArgument = true
+		case "/h":
+			isHelpArgument = true
+		case "-h":
+			isHelpArgument = true
+		case "--h":
+			isHelpArgument = true
+		case "help":
+			isHelpArgument = true
+		case "/help":
+			isHelpArgument = true
+		case "-help":
+			isHelpArgument = true
+		case "--help":
+			isHelpArgument = true
+		}
+
+	} else {
+		fmt.Print(fmt.Sprintf(UI_ParameterInvalid, GetFunctionName()))
+		fmt.Println(fmt.Sprintf(UI_Parameter, "_theString:"+_theString))
+	}
+
+	return isHelpArgument
+}
