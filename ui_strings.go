@@ -44,9 +44,9 @@ File name: %s`
 
 Arguments:
 
-stegstream-client <server URL>
+./stegstream-client <server URL>
 
 Example:
 
-stegstream-client http://localhost:8080/Audio`
+./stegstream-client http://localhost:8080/Audio`
 )
