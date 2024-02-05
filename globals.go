@@ -6,3 +6,4 @@ const HIDDEN_FILE_DATA_OFFSET int64 = 1500
 const TEMP_FILE string = "ServerFile.tmp"
 
 const DEBUG = false
+const UPDATE_UI = true

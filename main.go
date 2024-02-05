@@ -40,7 +40,6 @@ func main() {
 				// Get container file from server URL
 				if GetServerFile(os.Args[1]) == true {
 					// Extract hidden file from container file
-					fmt.Println(UI_ExtractingHiddenFile)
 					hiddenFileExtracted, hiddenFileName = Unsteg(TEMP_FILE)
 					if hiddenFileExtracted == true {
 						// Delete container file

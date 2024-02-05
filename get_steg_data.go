@@ -93,6 +93,11 @@ func Unsteg(_containerFile string) (bool, string) {
 										// Loop around container file and read the hidden file data out of it one byte at a time
 										for containerFileReadCounter = 0; containerFileReadCounter != steps; containerFileReadCounter++ {
 
+											if UPDATE_UI == true {
+												// Update UI
+												fmt.Printf("\r" + UI_ExtractingHiddenFile + ".  ")
+											}
+
 											// Read a byte from the container file at the current offset point
 											readByte = make([]byte, 1)
 											hiddenFileBytesRead, err = containerFileDesc.ReadAt(readByte, offset)
@@ -111,6 +116,11 @@ func Unsteg(_containerFile string) (bool, string) {
 													containerFileReadError = true
 													break
 												}
+											}
+
+											if UPDATE_UI == true {
+												// Update UI
+												fmt.Printf("\r" + UI_ExtractingHiddenFile + ".. ")
 											}
 
 											if hiddenFileBytesRead != 1 {
@@ -154,6 +164,11 @@ func Unsteg(_containerFile string) (bool, string) {
 
 										} // End byte at a time for loop
 
+										if UPDATE_UI == true {
+											// Update UI
+											fmt.Printf("\r" + UI_ExtractingHiddenFile + "...")
+										}
+
 										if containerFileReadError == false {
 
 											// Write any data left in the buffer to the hidden file
@@ -189,6 +204,11 @@ func Unsteg(_containerFile string) (bool, string) {
 									fmt.Println(UI_FileExistsError, hiddenFile)
 									fileUnhidden = false
 								}
+							}
+
+							if UPDATE_UI == true {
+								// Update UI
+								fmt.Printf("\r")
 							}
 
 							// Close down file handles for container and hidden files
