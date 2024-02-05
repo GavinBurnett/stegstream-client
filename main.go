@@ -41,19 +41,35 @@ func main() {
 				if GetServerFile(os.Args[1]) == true {
 					// Extract hidden file from container file
 					hiddenFileExtracted, hiddenFileName = Unsteg(TEMP_FILE)
-					if hiddenFileExtracted == true {
-						// Delete container file
+
+					// Delete container file
+					if FileExists(TEMP_FILE) {
 						if DeleteFile(TEMP_FILE) == false {
-							fmt.Println(UI_ExtractedHiddenFile, hiddenFileName)
+							// File deleted
 						} else {
 							exitCode = 1
 							fmt.Println(UI_DeleteError, TEMP_FILE)
 						}
+					}
+
+					if hiddenFileExtracted == true {
+						fmt.Println(UI_ExtractedHiddenFile, hiddenFileName)
 					} else {
 						exitCode = 1
 						fmt.Println(UI_FailedToExtractHiddenFile)
 					}
 				} else {
+
+					// Delete container file
+					if FileExists(TEMP_FILE) {
+						if DeleteFile(TEMP_FILE) == false {
+							// File deleted
+						} else {
+							exitCode = 1
+							fmt.Println(UI_DeleteError, TEMP_FILE)
+						}
+					}
+
 					exitCode = 1
 					fmt.Println(UI_FailedToDownloadContainerFile)
 				}
