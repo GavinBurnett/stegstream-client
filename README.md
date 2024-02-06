@@ -18,7 +18,7 @@ Open a command prompt, and cd into the directory containing the client program.
 
 Enter the following:
 
-./stegstream-client <server URL>
+./stegstream-client server URL
 
 An example:
 
