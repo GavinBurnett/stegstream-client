@@ -18,7 +18,7 @@ func GetServerFile(_url string) bool {
 
 	if len(_url) > 0 {
 
-		fmt.Println(UI_GettingFile)
+		fmt.Printf("\r" + UI_GettingFile)
 
 		// Check URL is valid
 		_, err = url.ParseRequestURI(_url)
@@ -49,7 +49,7 @@ func GetServerFile(_url string) bool {
 							fmt.Println(UI_FileCopyError, err)
 						} else {
 							// Got file from server
-							fmt.Println(UI_GotFile)
+							fmt.Println("\r" + UI_GotFile + "       ")
 							gotFile = true
 						}
 					}
