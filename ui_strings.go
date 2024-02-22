@@ -36,6 +36,10 @@ const (
 	UI_GotFile                       = `Got file from server`
 	UI_ExtractingHiddenFile          = `Extracting hidden file`
 	UI_ExtractedHiddenFile           = `Extracted hidden file:`
+	UI_CreatingFile                  = `Creating file: `
+	UI_Done                          = ` - Done.`
+	UI_FileDeleteError               = `ERROR: File delete error: `
+	UI_RandomDataError               = `ERROR: Random data not generated`
 	UI_HiddenFileData                = `Hidden file data:
 Spacing: %v
 Steps: %v

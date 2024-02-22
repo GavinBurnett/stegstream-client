@@ -241,6 +241,7 @@ func Unsteg(_containerFile string) (bool, string) {
 	} else {
 		fmt.Print(fmt.Sprintf(UI_ParameterInvalid, GetFunctionName()))
 		fmt.Println(fmt.Sprintf(UI_Parameter, "_containerFile: "+_containerFile))
+		fileUnhidden = false
 	}
 
 	return fileUnhidden, hiddenFile
