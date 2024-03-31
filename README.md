@@ -18,13 +18,27 @@ Open a command prompt, and cd into the directory containing the client program.
 
 Enter the following:
 
-./stegstream-client server URL
+./stegstream-client serverURL
 
 An example:
 
 ./stegstream-client http://localhost:8080/Audio
 
 This will download the streamed music file and extract the hidden file from it. The hidden file will be written to the same directory that the client program is stored in.
+
+Getting the hidden file from a file on the local hard drive
+
+Open a command prompt, and cd into the directory containing the client program.
+
+Enter the following:
+
+./stegstream-client --local FileName
+
+An example:
+
+./stegstream-client --local Waves.mp3
+
+This will extract the hidden file from the file on the local hard drive. The hidden file will be written to the same directory that the client program is stored in.
 
 Things to consider
 

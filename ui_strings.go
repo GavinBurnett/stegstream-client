@@ -40,17 +40,20 @@ const (
 	UI_Done                          = ` - Done.`
 	UI_FileDeleteError               = `ERROR: File delete error: `
 	UI_RandomDataError               = `ERROR: Random data not generated`
+	UI_LocalFile                     = `--local`
 	UI_HiddenFileData                = `Hidden file data:
 Spacing: %v
 Steps: %v
 File name: %s`
-	UI_Help = `stegstream client v1.1 by gburnett@outlook.com
+	UI_Help = `stegstream client v1.2 by gburnett@outlook.com
 
 Arguments:
 
 ./stegstream-client <server URL>
+./stegstream-client --local <local file>
 
-Example:
+Examples:
 
-./stegstream-client http://localhost:8080/Audio`
+./stegstream-client http://localhost:8080/Audio
+./stegstream-client --local Waves.mp3`
 )

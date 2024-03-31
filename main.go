@@ -75,7 +75,40 @@ func main() {
 				}
 			}
 		}
-		if len(os.Args) > 2 {
+		if len(os.Args) == 3 {
+
+			if IsStringHelpArgument(os.Args[1]) || IsStringHelpArgument(os.Args[2]) {
+				// User has given help argument - display help
+				fmt.Println(UI_Help)
+			} else {
+				// User has given local command and local file as arguments
+
+				if os.Args[1] == UI_LocalFile {
+
+					if FileExists(os.Args[2]) {
+
+						// Extract hidden file from container file
+						hiddenFileExtracted, hiddenFileName = Unsteg(os.Args[2])
+
+						if hiddenFileExtracted == true {
+							fmt.Println(UI_ExtractedHiddenFile, hiddenFileName)
+						} else {
+							exitCode = 1
+							fmt.Println(UI_FailedToExtractHiddenFile)
+						}
+
+					} else {
+						exitCode = 1
+						fmt.Println(UI_FileNotFound, os.Args[2])
+					}
+
+				} else {
+					exitCode = 1
+					fmt.Println(UI_InvalidArgs)
+				}
+			}
+		}
+		if len(os.Args) > 3 {
 			// Too many arguments - display error
 			exitCode = 1
 			fmt.Println(UI_InvalidArgs)
