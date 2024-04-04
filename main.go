@@ -42,13 +42,12 @@ func main() {
 					// Extract hidden file from container file
 					hiddenFileExtracted, hiddenFileName = Unsteg(TEMP_FILE)
 
-					// Delete container file
+					// Wipe container file
 					if FileExists(TEMP_FILE) {
-						if DeleteFile(TEMP_FILE) == false {
-							// File deleted
-						} else {
+
+						if WipeFile(TEMP_FILE) == false {
 							exitCode = 1
-							fmt.Println(UI_DeleteError, TEMP_FILE)
+							fmt.Println(fmt.Sprintf(UI_WipeFileError, TEMP_FILE))
 						}
 					}
 
