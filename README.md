@@ -24,7 +24,7 @@ An example:
 
 ./stegstream-client http://localhost:8080/Audio
 
-This will download the streamed music file and extract the hidden file from it. The hidden file will be written to the same directory that the client program is stored in.
+This will download the streamed music file and extract the hidden file from it. The music file is securely deleted after extraction has taken place. The hidden file will be written to the same directory that the client program is stored in.
 
 Getting the hidden file from a file on the local hard drive
 
@@ -42,6 +42,6 @@ This will extract the hidden file from the file on the local hard drive. The hid
 
 Things to consider
 
-The hidden file is left on disk after the client program has finished. It is the responsibility of the user to delete this file after reading if secrecy is important.
+The hidden file is left on disk after the client program has finished. It is the responsibility of the user to securely delete this file after reading if secrecy is important.
 
 In order for the client to see the server, make sure the computer running the server is network visible from the computer running the client – use ping to check visibility.
